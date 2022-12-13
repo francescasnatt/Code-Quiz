@@ -47,25 +47,25 @@ function displayNextQuestion(){
         choicesButton.addEventListener('click', function(){
             if(choicesButton.textContent !== currentQuestionAnswer){
                 sfxWrong.play();
-                // // they see "wrong!"
+                // they see "wrong!"
                 // let alert = questionsEl.createElement('p');
                 // alert.textContent = "Wrong!";
                 // questionsEl.appendChild(alert);
-                // // timer drops 15 secs
-                // currentTime-15;
-                // // display next Q
+                // timer drops 15 secs
+                currentTime-15;
+                // display next Q
                 displayNextQuestion();
             }
             else{
                 sfxRight.play();
-                // // they see "correct!"
+                // they see "correct!"
                 // let alert = questionsEl.createElement('p');
                 // alert.textContent = "Correct!";
                 // questionsEl.appendChild(alert);
-                // // display next Q
+                // display next Q
                 displayNextQuestion();
             }
-        });        
+        });
     }  
 }
 
@@ -77,11 +77,12 @@ function startTimer(){
  }, 1000);
 }
 
+let questionsEl = document.getElementById('questions');
+
 let startQuizButton = document.getElementById('start');
 startQuizButton.addEventListener('click',() => {
     let startScreen = document.getElementById('start-screen');
     startScreen.classList.add('hide');
-    let questionsEl = document.getElementById('questions');
     questionsEl.classList.remove('hide');
     displayNextQuestion();
     startTimer();
@@ -114,10 +115,6 @@ var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 // choicesButton = document.createElement('button');
 // how to reference variable defined inside a function? askBCS
-
-function checkAnswer(){
-
-}
 
 
 // ---------------------------------------------------------------------------------------
@@ -168,9 +165,9 @@ submitButton.addEventListener('click', function(){
 });
 
 // show initials on highscores page:
-let highscoresList = 
-let highscoresListItem = document.createElement('li');
-highscoresListItem.textContent = initials;
+// let highscoresList = 
+// let highscoresListItem = document.createElement('li');
+// highscoresListItem.textContent = initials;
 
 
 
