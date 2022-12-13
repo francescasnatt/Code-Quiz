@@ -44,6 +44,31 @@ function displayNextQuestion(){
         choicesButton.textContent = currentQuestionObject.choices[i];
         choicesEl.appendChild(choicesButton);
     }
+
+    choicesButton.addEventListener('click', function(){
+        if(choicesButton.textContent !== currentQuestionAnswer){
+            sfxWrong.play();
+            // they see "wrong!"
+            let alert = questionsEl.createElement('p');
+            alert.textContent = "Wrong!";
+            questionsEl.appendChild(alert);
+            // timer drops 15 secs
+            currentTime-15;
+            // display next Q
+            displayNextQuestion();
+        }
+        else{
+            sfxRight.play();
+            // they see "correct!"
+            let alert = questionsEl.createElement('p');
+            alert.textContent = "Correct!";
+            questionsEl.appendChild(alert);
+            // display next Q
+            displayNextQuestion();
+        }
+    
+    });
+
 }
 
 function startTimer(){
@@ -89,31 +114,9 @@ startQuizButton.addEventListener('click',() => {
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
-choicesButton = document.createElement('button');
+// choicesButton = document.createElement('button');
 // how to reference variable defined inside a function? askBCS
-choicesButton.addEventListener('click', function(){
-    if(choicesButton.textContent !== currentQuestionAnswer){
-        sfxWrong.play();
-        // they see "wrong!"
-        let alert = questionsEl.createElement('p');
-        alert.textContent = "Wrong!";
-        questionsEl.appendChild(alert);
-        // timer drops 15 secs
-        currentTime-15;
-        // display next Q
-        displayNextQuestion();
-    }
-    else{
-        sfxRight.play();
-        // they see "correct!"
-        let alert = questionsEl.createElement('p');
-        alert.textContent = "Correct!";
-        questionsEl.appendChild(alert);
-        // display next Q
-        displayNextQuestion();
-    }
 
-});
 
 
 // ---------------------------------------------------------------------------------------
@@ -164,13 +167,19 @@ submitButton.addEventListener('click', function(){
 });
 
 // show initials on highscores page:
-// let highscoresList = 
-// let highscoresListItem = document.createElement('li');
-// highscoresListItem.textContent = initials;
+let highscoresList = 
+let highscoresListItem = document.createElement('li');
+highscoresListItem.textContent = initials;
+
 
 
 // ---------------------------------------------------------------------------------------
 
 // ACTION user clicks clear highscores button
 // CONSEQUENCE removes highscore list elements on the page
+function clearHighscoresList(){
+    
+}
 
+let clearHighscoresButton = getElementById('clear');
+clearHighscoresButton.on('click', clearHighscoresList);
