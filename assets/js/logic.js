@@ -43,32 +43,30 @@ function displayNextQuestion(){
         choicesButton = document.createElement('button');
         choicesButton.textContent = currentQuestionObject.choices[i];
         choicesEl.appendChild(choicesButton);
-    }
 
-    choicesButton.addEventListener('click', function(){
-        if(choicesButton.textContent !== currentQuestionAnswer){
-            sfxWrong.play();
-            // they see "wrong!"
-            let alert = questionsEl.createElement('p');
-            alert.textContent = "Wrong!";
-            questionsEl.appendChild(alert);
-            // timer drops 15 secs
-            currentTime-15;
-            // display next Q
-            displayNextQuestion();
-        }
-        else{
-            sfxRight.play();
-            // they see "correct!"
-            let alert = questionsEl.createElement('p');
-            alert.textContent = "Correct!";
-            questionsEl.appendChild(alert);
-            // display next Q
-            displayNextQuestion();
-        }
-    
-    });
-
+        choicesButton.addEventListener('click', function(){
+            if(choicesButton.textContent !== currentQuestionAnswer){
+                sfxWrong.play();
+                // // they see "wrong!"
+                // let alert = questionsEl.createElement('p');
+                // alert.textContent = "Wrong!";
+                // questionsEl.appendChild(alert);
+                // // timer drops 15 secs
+                // currentTime-15;
+                // // display next Q
+                displayNextQuestion();
+            }
+            else{
+                sfxRight.play();
+                // // they see "correct!"
+                // let alert = questionsEl.createElement('p');
+                // alert.textContent = "Correct!";
+                // questionsEl.appendChild(alert);
+                // // display next Q
+                displayNextQuestion();
+            }
+        });        
+    }  
 }
 
 function startTimer(){
@@ -117,6 +115,9 @@ var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 // choicesButton = document.createElement('button');
 // how to reference variable defined inside a function? askBCS
 
+function checkAnswer(){
+
+}
 
 
 // ---------------------------------------------------------------------------------------
