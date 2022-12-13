@@ -54,12 +54,6 @@ function startTimer(){
  }, 1000);
 }
 
-function endOfGame(){
-    if(currentTime <= 0 || currentQuestionNo === questions.length){
-        clearInterval(interval);
-    }
-}
-
 let startQuizButton = document.getElementById('start');
 startQuizButton.addEventListener('click',() => {
     let startScreen = document.getElementById('start-screen');
@@ -89,22 +83,19 @@ startQuizButton.addEventListener('click',() => {
 // else
     // create element, add "correct!" text content and add to page using appendchild
     // play "right" sound
-    // targets elements on page and makes textContent = "" (removes content)
-    // creates elements for question and answers using document.createElement()
-    // adds text content to each element to contain question and 4 choices using element.textContent
-    // adds each element to page using parentElement.appendChild() (? - how do I avoid repeating this code for each new question)
+    /// displayNextQuestion();
 
 // CODE
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
-choicesButton = document.getElementById
+choicesButton = document.createElement('button');
 // how to reference variable defined inside a function? askBCS
 choicesButton.addEventListener('click', function(){
     if(choicesButton.textContent !== currentQuestionAnswer){
         sfxWrong.play();
         // they see "wrong!"
-        let alert = questionsEl.createElement('string');
+        let alert = questionsEl.createElement('p');
         alert.textContent = "Wrong!";
         questionsEl.appendChild(alert);
         // timer drops 15 secs
@@ -115,7 +106,7 @@ choicesButton.addEventListener('click', function(){
     else{
         sfxRight.play();
         // they see "correct!"
-        let alert = questionsEl.createElement('string');
+        let alert = questionsEl.createElement('p');
         alert.textContent = "Correct!";
         questionsEl.appendChild(alert);
         // display next Q
@@ -134,10 +125,21 @@ choicesButton.addEventListener('click', function(){
 // HOW
 // if timer === 0 || (? - how to identify questions are complete)
     // function:
-    // targets elements on page and makes textContent = "" (removes content)
-    // creates elements for end screen using document.createElement()
-    // adds text content to each element using element.textContent
-    // adds each element to page using parentElement.appendChild()
+    // stops timer
+    // shows end screen
+
+
+// CODE
+function endOfGame(){
+    if(currentTime <= 0 || currentQuestionNo === questions.length){
+        // stop timer
+        clearInterval(interval);
+        // show end screen
+        questionsEl.classList.add('hide');
+        let endScreen = document.getElementById('end-screen');
+        endScreen.classList.remove('hide');
+    }
+}
 
 // ---------------------------------------------------------------------------------------
 
@@ -147,6 +149,10 @@ choicesButton.addEventListener('click', function(){
 
 // HOW
 // use localStorage.setItem("lastname", "Smith");
+
+// CODE
+let initials = localStorage.getItem('initials');
+
 
 
 // ---------------------------------------------------------------------------------------
