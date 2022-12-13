@@ -163,10 +163,14 @@ submitButton.addEventListener('click', function(){
     location.href = "highscores.html";
 });
 
-// show initials on highscores page
+// show initials on highscores page:
+// let highscoresList = 
+// let highscoresListItem = document.createElement('li');
+// highscoresListItem.textContent = initials;
 
 
 // ---------------------------------------------------------------------------------------
 
 // ACTION user clicks clear highscores button
 // CONSEQUENCE removes highscore list elements on the page
+
