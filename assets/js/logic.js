@@ -22,22 +22,25 @@
 // CODE
 let currentQuestionNo = 0;
 let currentQuestionObject = questions[currentQuestionNo];
-let startingTime = 75;
+let currentTime = 75;
 let interval;
 let timerCount = document.getElementById('time');
+let choicesButton;
+
+let currentQuestionAnswer = currentQuestionObject.answer.valueOf;
+
 // when user clicks answer
 // currentQuestionObject++
 
 // when click a button, check if correct or not. if correct, increment currentQuestionNo and run endOfGame function
 // if not correct, increment Q no and check to see if currentQ is same as Q.length, run endofgame, if not, display next question
 
-// ✅
 function displayNextQuestion(){
     let questionTitleEl = document.querySelector("#question-title");
     questionTitleEl.textContent = currentQuestionObject.title;
     let choicesEl = document.querySelector('#choices');
     for (let i=0; i<currentQuestionObject.choices.length; i++){
-        let choicesButton = document.createElement('button');
+        choicesButton = document.createElement('button');
         choicesButton.textContent = currentQuestionObject.choices[i];
         choicesEl.appendChild(choicesButton);
     }
@@ -45,14 +48,14 @@ function displayNextQuestion(){
 
 function startTimer(){
  interval = setInterval(() => {
-    startingTime--;
-    timerCount.textContent = startingTime;
+    currentTime--;
+    timerCount.textContent = currentTime;
     endOfGame();
  }, 1000);
 }
 
 function endOfGame(){
-    if(startingTime <= 0 || currentQuestionNo === questions.length){
+    if(currentTime <= 0 || currentQuestionNo === questions.length){
         clearInterval(interval);
     }
 }
@@ -95,15 +98,29 @@ startQuizButton.addEventListener('click',() => {
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
-let choicesButton = document.getElementsByClassName('.choices');
-document.addEventListener('click', function(){
-    // if(answer is incorrect){
-    //     sfxWrong.play();
-
-    // }
-    // else{
-    //     sfxRight.play();
-    // }
+choicesButton = document.getElementById
+// how to reference variable defined inside a function? askBCS
+choicesButton.addEventListener('click', function(){
+    if(choicesButton.textContent !== currentQuestionAnswer){
+        sfxWrong.play();
+        // they see "wrong!"
+        let alert = questionsEl.createElement('string');
+        alert.textContent = "Wrong!";
+        questionsEl.appendChild(alert);
+        // timer drops 15 secs
+        currentTime-15;
+        // display next Q
+        displayNextQuestion();
+    }
+    else{
+        sfxRight.play();
+        // they see "correct!"
+        let alert = questionsEl.createElement('string');
+        alert.textContent = "Correct!";
+        questionsEl.appendChild(alert);
+        // display next Q
+        displayNextQuestion();
+    }
 
 });
 
