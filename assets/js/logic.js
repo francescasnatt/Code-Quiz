@@ -151,8 +151,19 @@ function endOfGame(){
 // use localStorage.setItem("lastname", "Smith");
 
 // CODE
+let submitButton = document.getElementById('submit');
 let initials = localStorage.getItem('initials');
 
+submitButton.addEventListener('click', function(){
+    // save initials to localstorage
+    localStorage.setItem("initials", initials);
+    // go to highscores page ("highscores.html")
+    let endScreen = document.getElementById('end-screen');
+    endScreen.classList.add('hide');
+    location.href = "highscores.html";
+});
+
+// show initials on highscores page
 
 
 // ---------------------------------------------------------------------------------------
